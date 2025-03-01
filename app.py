@@ -4,11 +4,11 @@ import pdfplumber
 import os
 from dotenv import load_dotenv
 
-# --- Load API Key Securely ---
-load_dotenv()  # Load environment variables from .env file (if using locally)
+
+load_dotenv()  
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# --- Helper Functions ---
+
 def extract_text_from_pdfs(uploaded_files):
     all_text = ""
     for uploaded_file in uploaded_files:
@@ -42,9 +42,9 @@ def summarize_text(pdf_text):
     response = model.generate_content(prompt)
     return response.text
 
-# --- Session State Setup ---
+
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []  # List of dicts with 'question' and 'answer'
+    st.session_state.chat_history = []  
 if "pdf_text" not in st.session_state:
     st.session_state.pdf_text = ""
 if "summary" not in st.session_state:
@@ -55,8 +55,8 @@ st.set_page_config(
     page_icon=("logo.png")
 )
 
-# --- Sidebar: Add Image & Chat History ---
-st.sidebar.image("logo.png", width=120)  # Replace with your logo file
+# --- Sidebar
+st.sidebar.image("logo.png", width=120)  
 st.sidebar.title("Chat History")
 if st.sidebar.button("Delete History🗑️"):
     st.session_state.chat_history = []
